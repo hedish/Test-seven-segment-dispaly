@@ -166,30 +166,43 @@ void showNum (int x) {
   }
 }
 
-int count=0;
+
 void loop(){
+  int num = 1234;  
+  int a=0, b=0, c=0, d=0;
+  d=num%10;
+  num/=10;
+  c=num%10;
+  num/=10;
+  b=num%10;
+  num/=10;
+  a=num%10;
+
+  //Näytä tuhannet
   digitalWrite(DIG1, DIGON);
-  showNum(1);
+  showNum(a);
   delay (1);
   digitalWrite(DIG1, DIGOFF);
 
-
+  //Näytä sadat
   digitalWrite(DIG2, DIGON);
-  showNum(2);
+  showNum(b);
   delay (1);
   digitalWrite(DIG2, DIGOFF);
 
+  //Näytä kymmenet
     digitalWrite(DIG3, DIGON);
-  showNum(3);
+  showNum(c);
   delay (1);
   digitalWrite(DIG3, DIGOFF);
 
+  //Näytä ykköset
 digitalWrite(DIG4, DIGON);
-  showNum(4);
+  showNum(d);
   delay (1);
   digitalWrite(DIG4, DIGOFF);
 
-  
+
  
 
   
