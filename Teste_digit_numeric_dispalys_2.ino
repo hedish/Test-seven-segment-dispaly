@@ -1,17 +1,17 @@
 //affiche le numero 1 et 2 et 3 et 4 en meme temp
- #define SEGA 2
- #define SEGB 6
- #define SEGC 9
- #define SEGD 11
- #define SEGE 12
- #define SEGF 3
- #define SEGG 8
- #define SEGDP 10
+ #define SEGA 11
+ #define SEGB 7
+ #define SEGC 4
+ #define SEGD 2
+ #define SEGE 1 
+ #define SEGF 10
+ #define SEGG 5
+ #define SEGDP 3
 
-#define DIG1 1
-#define DIG2 4
-#define DIG3 5
-#define DIG4 7
+#define DIG1 12
+#define DIG2 9
+#define DIG3 8
+#define DIG4 6
  
 #define SEGON LOW
 #define SEGOFF HIGH
@@ -167,8 +167,7 @@ void showNum (int x) {
 }
 
 
-void loop(){
-  int num = 1234;  
+void show(int num){ 
   int a=0, b=0, c=0, d=0;
   d=num%10;
   num/=10;
@@ -197,13 +196,15 @@ void loop(){
   digitalWrite(DIG3, DIGOFF);
 
   //Näytä ykköset
-digitalWrite(DIG4, DIGON);
+  digitalWrite(DIG4, DIGON);
   showNum(d);
   delay (1);
   digitalWrite(DIG4, DIGOFF);
+}
 
 
- 
 
-  
-  }
+
+void loop(){
+  show(9876);
+}
