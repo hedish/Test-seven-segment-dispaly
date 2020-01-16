@@ -1782,6 +1782,15 @@ http://randomnerdtutorials.com/complete-guide-for-ultrasonic-sensor-hc-sr04/&lt;
 <wire x1="5.08" y1="-35.56" x2="5.08" y2="-30.48" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="N$15" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="TRIG"/>
+<wire x1="0" y1="45.72" x2="-22.86" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="45.72" x2="-22.86" y2="-17.78" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="G$1" pin="0"/>
+<wire x1="-22.86" y1="-17.78" x2="-17.78" y2="-17.78" width="0.1524" layer="91"/>
+</segment>
+</net>
 <net name="N$16" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="ECHO"/>
@@ -1789,15 +1798,6 @@ http://randomnerdtutorials.com/complete-guide-for-ultrasonic-sensor-hc-sr04/&lt;
 <wire x1="2.54" y1="40.64" x2="-17.78" y2="40.64" width="0.1524" layer="91"/>
 <pinref part="IC2" gate="G$1" pin="13"/>
 <wire x1="-17.78" y1="40.64" x2="-17.78" y2="17.78" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$15" class="0">
-<segment>
-<pinref part="IC2" gate="G$1" pin="A0"/>
-<wire x1="17.78" y1="-5.08" x2="22.86" y2="-5.08" width="0.1524" layer="91"/>
-<wire x1="22.86" y1="-5.08" x2="22.86" y2="45.72" width="0.1524" layer="91"/>
-<pinref part="U$1" gate="G$1" pin="TRIG"/>
-<wire x1="22.86" y1="45.72" x2="0" y2="45.72" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

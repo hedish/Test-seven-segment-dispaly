@@ -1,30 +1,31 @@
-//affiche le numero 1 et 2 et 3 et 4 en meme temp
- #define SEGA 11
- #define SEGB 7
- #define SEGC 4
- #define SEGD 2
- #define SEGE 1 
- #define SEGF 10
- #define SEGG 5
- #define SEGDP 3
-
+#define SEGA 11
+#define SEGB 7
+#define SEGC 4
+#define SEGD 2
+#define SEGE 1 
+#define SEGF 10
+#define SEGG 5
+#define SEGDP 3
 #define DIG1 12
 #define DIG2 9
 #define DIG3 8
 #define DIG4 6
- 
 #define SEGON LOW
 #define SEGOFF HIGH
 #define DIGON HIGH
 #define DIGOFF LOW 
 
+#define trigPin A0
+#define echoPin 13
+long duration;
+float distanceCM;
+
 void setup() {
-  
+  pinMode(trigPin, OUTPUT); 
+  pinMode(echoPin, INPUT); 
+  Serial.begin(9600); 
 
 
- 
-
- 
   pinMode(SEGA, OUTPUT);
   pinMode(SEGB, OUTPUT);
   pinMode(SEGC, OUTPUT);
@@ -167,15 +168,15 @@ void showNum (int x) {
 }
 
 
-void show(int num){ 
+void show(int num){ // Miksi?
   int a=0, b=0, c=0, d=0;
-  d=num%10;
-  num/=10;
-  c=num%10;
-  num/=10;
-  b=num%10;
-  num/=10;
-  a=num%10;
+  d=num%10;// Miksi?
+  num/=10;// Miksi?
+  c=num%10;// Miksi?
+  num/=10;// Miksi?
+  b=num%10;// Miksi?
+  num/=10;// Miksi?
+  a=num%10;// Miksi?
 
   //Näytä tuhannet
   digitalWrite(DIG1, DIGON);
@@ -203,8 +204,21 @@ void show(int num){
 }
 
 
-
-
 void loop(){
-  show(9876);
+  
+
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  duration = pulseIn(echoPin, HIGH);
+  int distanceCM = duration * 0.034 /2;
+
+  Serial.println(distanceCM);
+
+  show(distanceCM);
+  
 }
