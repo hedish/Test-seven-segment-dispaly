@@ -6,6 +6,7 @@
 #define SEGON LOW
 #define SEGOFF HIGH
 
+
 seg4x7::seg4x7(int segA, int segB, int segC, int segD, int segE, int segF, int segG, int segDP, int dig1, int dig2, int dig3, int dig4){
   _segA = segA;
   _segB = segB;
@@ -33,6 +34,7 @@ seg4x7::seg4x7(int segA, int segB, int segC, int segD, int segE, int segF, int s
   pinMode(_dig4, OUTPUT);
 }
 
+
 void seg4x7::showDig(int dig){
   switch(dig){
     case 0:zero();break;
@@ -46,25 +48,44 @@ void seg4x7::showDig(int dig){
     case 8:eight();break;
     case 9:nine();break;
   }
-  delay(1);
 }
-
+#define HOLDTIME 5000
+unsigned long nextDig=micros();
+int digit=4;
 void seg4x7::showNum(int num){
-  digitalWrite(_dig4, DIGON);
-  showDig(num%10);
-  digitalWrite(_dig4, DIGOFF);
-  num /=10;
-  digitalWrite(_dig3, DIGON);
-  showDig(num%10);
-  digitalWrite(_dig3, DIGOFF);  
-  num /=10;
-  digitalWrite(_dig2, DIGON);
-  showDig(num%10);
-  digitalWrite(_dig2, DIGOFF);  
-  num /=10;
-  digitalWrite(_dig1, DIGON);
-  showDig(num);
-  digitalWrite(_dig1, DIGOFF);  
+  if((micros()-nextDig)>=HOLDTIME){
+    nextDig +=HOLDTIME;
+    digit--;
+    if(digit==0){
+      digit=4;
+    }
+  }
+  num %= 10000;
+  switch(digit){
+    case 4:
+      digitalWrite(_dig4, DIGON);
+      showDig(num%10);
+      digitalWrite(_dig4, DIGOFF);
+    break;
+    case 3:
+      num /=10;
+      digitalWrite(_dig3, DIGON);
+      showDig(num%10);
+      digitalWrite(_dig3, DIGOFF);  
+    break;     
+    case 2:
+      num /=100;
+      digitalWrite(_dig2, DIGON);
+      showDig(num%10);
+      digitalWrite(_dig2, DIGOFF);  
+    break;     
+    case 1:
+      num /=1000;
+      digitalWrite(_dig1, DIGON);
+      showDig(num%10);
+      digitalWrite(_dig1, DIGOFF);  
+    break;     
+  }
 }
 
 void seg4x7::one() {
